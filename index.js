@@ -1,5 +1,4 @@
 const mineflayer = require('mineflayer');
-const acc = require("./bot.json");
 const config = require("./config.json");
 
 
@@ -8,7 +7,7 @@ const config = require("./config.json");
 var bot = mineflayer.createBot({
     host: config.minecraft.serverIP,
     port: config.minecraft.port,
-    username: acc.email,
-    password: acc.password,
-    version: 1.8
+    username: config.account.email,
+    password: config.account.password,
+    version: config.minecraft.version
 });
