@@ -1,4 +1,5 @@
 const mineflayer = require('mineflayer');
+const { pathfinder, Movements, goals } = require('mineflayer-pathfinder') 
 const config = require("./config.json");
 
 
@@ -12,6 +13,19 @@ var bot = mineflayer.createBot({
     version: config.minecraft.version
 });
 
+function lookAtNearestPlayer () {
+    if (config.botSettings.lookAtNearestPlayer == true) {
+        const playerFilter = (entity) => entity.type === 'player'
+        const playerEntity = bot.nearestEntity(playerFilter)
+    
+        if (!playerEntity) return
+    
+        const pos = playerEntity.position.offset(0,playerEntity.height,0)
+        bot.lookAt(pos)
+    }
+}
+
+bot.on('physicTick', lookAtNearestPlayer)
 
 bot.on("login", ()=>{
     console.log(`Logged in as ${bot.username}\nServer IP: ${config.minecraft.serverIP}:${config.minecraft.serverPort}\n`)
@@ -20,8 +34,5 @@ bot.on("login", ()=>{
 
 bot.on("message", async message =>{
     let chat = message.toString()
-    if (chat.includes("Friend request")) {
-        bot.chat(`/f accept`);
-    };
     console.log(chat);
 });

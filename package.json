@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/PanIntegralus/PaniniBot2#readme",
   "dependencies": {
-    "mineflayer": "^2.28.1"
+    "mineflayer": "^2.28.1",
+    "mineflayer-pathfinder": "^1.0.10"
   }
 }
