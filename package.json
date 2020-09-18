@@ -1,0 +1,25 @@
+{
+  "name": "paninibot2",
+  "version": "1.0.0",
+  "description": "Minecraft bot rewritten using the source code of PaniniBot.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PanIntegralus/PaniniBot2.git"
+  },
+  "keywords": [
+    "mineflayer"
+  ],
+  "author": "PanIntegralus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PanIntegralus/PaniniBot2/issues"
+  },
+  "homepage": "https://github.com/PanIntegralus/PaniniBot2#readme",
+  "dependencies": {
+    "mineflayer": "^2.28.1"
+  }
+}
