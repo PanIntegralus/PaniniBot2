@@ -1,4 +1,5 @@
 const mineflayer = require('mineflayer');
+const radarPlugin = require('mineflayer-radar')(mineflayer);
 const { pathfinder, Movements, goals } = require('mineflayer-pathfinder')
 const GoalFollow = goals.GoalFollow
 const GoalBlock = goals.GoalBlock
@@ -16,23 +17,23 @@ var bot = mineflayer.createBot({
 });
 
 bot.loadPlugin(pathfinder)
+radarPlugin(bot);
 
-function followPlayer() {
-    const playerToFollow = bot.players['PanIntegralus']
+// function followPlayer() {
+//     const playerToFollow = bot.players['PanIntegralus']
 
-    if (!playerToFollow) {
-        bot.chat("I don't see the player.")
-        return
-    }
+//     if (!playerToFollow) {
+//         bot.chat("I don't see the player.")
+//         return
+//     }
 
-    const mcData = require('minecraft-data')(bot.version)
-    const movements = new Movements(bot, mcData)
-    movements.scafoldingBlocks = []
-    bot.pathfinder.setMovements(movements)
+//     const mcData = require('minecraft-data')(bot.version)
+//     const movements = new Movements(bot, mcData)
+//     bot.pathfinder.setMovements(movements)
 
-    const goal = new GoalFollow(playerToFollow.entity, 1.5)
-    bot.pathfinder.setGoal(goal, true)
-}
+//     const goal = new GoalFollow(playerToFollow.entity, 1.5)
+//     bot.pathfinder.setGoal(goal, true)
+// }
 
 function lookAtNearestPlayer () {
     if (config.botSettings.lookAtNearestPlayer == true) {
@@ -46,9 +47,9 @@ function lookAtNearestPlayer () {
     }
 }
 
-bot.on('physicTick', lookAtNearestPlayer)
+// bot.once('spawn', followPlayer)
 
-bot.once('spawn', followPlayer)
+bot.on('physicTick', lookAtNearestPlayer)
 
 bot.on("login", ()=>{
     console.log(`Logged in as ${bot.username}\nServer IP: ${config.minecraft.serverIP}:${config.minecraft.serverPort}\n`)
